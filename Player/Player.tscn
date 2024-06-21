@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn4533emn1xoi"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_k8tap"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abmer"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_k8tap")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_abmer")
+
+[node name="Panel" type="Panel" parent="CollisionShape2D"]
+modulate = Color(0, 100, 1, 1)
+offset_left = -10.0
+offset_top = -16.0
+offset_right = 10.0
+offset_bottom = 14.0

@@ -1,0 +1,15 @@
+# Normalize EOL for all files that Git considers text files.
+# Ensure all text files use LF (Unix/Linux/Mac EOL style)
+* text=auto eol=lf
+
+# Specific files that need CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Ensure other specific files use LF
+*.sh text eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+
