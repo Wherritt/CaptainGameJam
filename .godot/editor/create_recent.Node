@@ -1,5 +1,5 @@
-Panel
 CollisionShape2D
+Panel
 Sprite2D
 CharacterBody2D
 Marker2D

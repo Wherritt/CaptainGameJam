@@ -48,6 +48,7 @@ func take_damage(damage):
 	current_health -= damage
 	print(current_health)
 	if current_health <= 0:
+		print("You Died from Enemy")
 		die()
 	
 func die():
