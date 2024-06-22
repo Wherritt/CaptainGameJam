@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abmer"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_k8tap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

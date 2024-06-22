@@ -1,69 +1,83 @@
-[gd_scene load_steps=3 format=3 uid="uid://de44sv6eg61bo"]
+[gd_scene load_steps=6 format=3 uid="uid://de44sv6eg61bo"]
 
 [ext_resource type="PackedScene" uid="uid://bn4533emn1xoi" path="res://Player/Player.tscn" id="1_8yo01"]
+[ext_resource type="PackedScene" uid="uid://cmucj8w1ljvnl" path="res://scripts/kill_zone.tscn" id="2_darts"]
+[ext_resource type="PackedScene" uid="uid://chgxq0fjyn6qx" path="res://Enemy1/enemy_1.tscn" id="3_d1nq5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1w8v2"]
 size = Vector2(876, 74)
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wgd2"]
+
 [node name="Node2D" type="Node2D"]
 position = Vector2(-2, 0)
 
-[node name="Player" parent="." instance=ExtResource("1_8yo01")]
-position = Vector2(1, 125)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="leftPlat" type="StaticBody2D" parent="."]
 position = Vector2(-360, -45)
 scale = Vector2(0.2, 0.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leftPlat"]
 position = Vector2(514, 232)
 shape = SubResource("RectangleShape2D_1w8v2")
 
-[node name="Panel" type="Panel" parent="StaticBody2D/CollisionShape2D"]
+[node name="Panel" type="Panel" parent="leftPlat/CollisionShape2D"]
 offset_left = -440.0
 offset_top = -40.0
 offset_right = 440.0
 offset_bottom = 40.0
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+[node name="rightPlat" type="StaticBody2D" parent="."]
 position = Vector2(160, -45)
 scale = Vector2(0.2, 0.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rightPlat"]
 position = Vector2(514, 232)
 shape = SubResource("RectangleShape2D_1w8v2")
 
-[node name="Panel" type="Panel" parent="StaticBody2D3/CollisionShape2D"]
+[node name="Panel" type="Panel" parent="rightPlat/CollisionShape2D"]
 offset_left = -440.0
 offset_top = -40.0
 offset_right = 440.0
 offset_bottom = 40.0
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+[node name="depPlat" type="StaticBody2D" parent="."]
 position = Vector2(-100, -118)
 scale = Vector2(0.2, 0.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="depPlat"]
 position = Vector2(514, 232)
 shape = SubResource("RectangleShape2D_1w8v2")
 
-[node name="Panel" type="Panel" parent="StaticBody2D4/CollisionShape2D"]
+[node name="Panel" type="Panel" parent="depPlat/CollisionShape2D"]
 offset_left = -440.0
 offset_top = -40.0
 offset_right = 440.0
 offset_bottom = 40.0
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="mainFloor" type="StaticBody2D" parent="."]
 position = Vector2(-511, -52)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mainFloor"]
 position = Vector2(514, 232)
 shape = SubResource("RectangleShape2D_1w8v2")
 
-[node name="Panel" type="Panel" parent="StaticBody2D2/CollisionShape2D"]
+[node name="Panel" type="Panel" parent="mainFloor/CollisionShape2D"]
 offset_left = -440.0
 offset_top = -40.0
 offset_right = 440.0
 offset_bottom = 40.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="KillZone" parent="." instance=ExtResource("2_darts")]
+position = Vector2(0, 267)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("WorldBoundaryShape2D_0wgd2")
+
+[node name="Player" parent="." instance=ExtResource("1_8yo01")]
+position = Vector2(8, 122)
+disable_mode = 2
+
+[node name="Enemy" parent="." instance=ExtResource("3_d1nq5")]
+position = Vector2(-95, 131)

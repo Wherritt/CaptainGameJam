@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmucj8w1ljvnl"]
+
+[ext_resource type="Script" path="res://scripts/kill_zone.gd" id="1_qen6x"]
+
+[node name="KillZone" type="Area2D"]
+script = ExtResource("1_qen6x")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

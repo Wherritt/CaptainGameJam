@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://chgxq0fjyn6qx"]
+
+[ext_resource type="Script" path="res://Enemy1/EnemyHit.gd" id="1_00ru5"]
+[ext_resource type="Script" path="res://Enemy1/movement.gd" id="1_rn0w1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hd45"]
+size = Vector2(42, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_os55v"]
+size = Vector2(44, 13)
+
+[node name="Enemy1" type="CharacterBody2D"]
+script = ExtResource("1_rn0w1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1hd45")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(100, 1, 1, 1)
+offset_left = -21.0
+offset_top = -6.0
+offset_right = 21.0
+offset_bottom = 6.0
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_00ru5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_os55v")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-40, 0)
+target_position = Vector2(0, 29)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(40, 0)
+target_position = Vector2(0, 29)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

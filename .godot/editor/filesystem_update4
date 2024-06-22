@@ -1,0 +1,9 @@
+res://Main.tscn
+res://scripts/kill_zone.gd
+res://scripts/kill_zone.tscn
+res://Enemy1/enemy_1.tscn
+res://Player/Player.tscn
+res://Enemy1/EnemyHit.gd
+res://Player/Health.gd
+res://Player/Player.gd
+res://Enemy1/movement.gd

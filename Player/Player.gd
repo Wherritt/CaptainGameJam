@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -450.0
+const MAX_Health = 10
+var current_health = MAX_Health
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -26,3 +28,12 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+func take_damage(damage):
+	current_health -= damage
+	print(current_health) #prints current health to console
+	if current_health <= 0:
+		die()
+	
+func die():
+	hide()
