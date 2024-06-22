@@ -7,3 +7,6 @@ res://Enemy1/EnemyHit.gd
 res://Player/Health.gd
 res://Player/Player.gd
 res://Enemy1/movement.gd
+res://Enemy1/Enemy1Movement.gd
+res://scripts/Bullet.gd
+res://scripts/bullet.tscn

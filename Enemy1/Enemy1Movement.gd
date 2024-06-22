@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var direction = 1
-const SPEED = 80
+const SPEED = 90
 @onready var ray_cast_left = $RayCastLeft
 @onready var ray_cast_right = $RayCastRight
 
