@@ -2,18 +2,21 @@
 
 [ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_1vywe"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vftd6"]
-size = Vector2(18, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_facqc"]
+size = Vector2(20, 6)
 
-[node name="bullet" type="CharacterBody2D"]
+[node name="Area2D" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_1vywe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_vftd6")
+shape = SubResource("RectangleShape2D_facqc")
 
 [node name="Panel" type="Panel" parent="CollisionShape2D"]
-modulate = Color(1, 1, 100, 1)
+modulate = Color(100, 100, 100, 1)
 offset_left = -9.0
-offset_top = -5.0
+offset_top = -2.0
 offset_right = 9.0
-offset_bottom = 5.0
+offset_bottom = 2.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

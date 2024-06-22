@@ -7,8 +7,6 @@ var current_health = MAX_HEALTH
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@onready var fire_point = $FlipBody/FirePoint
-var Bullet = preload("res://scripts/bullet.tscn")
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -38,19 +36,21 @@ func _physics_process(delta):
 	move_and_slide()
 
 func shoot():
+	var Bullet = preload("res://scripts/bullet.tscn")
 	var bullet_instance = Bullet.instantiate()
-	bullet_instance.position = fire_point.global_position
-	bullet_instance.player_direction = $FlipBody.scale.x
-	bullet_instance.velocity.x = $FlipBody.scale.x * bullet_instance.SPEED
+	bullet_instance.position = $FlipBody/FirePoint.global_position
+	#change bullet direction of travel based on player's orientation
+	bullet_instance.direction = Vector2($FlipBody.scale.x, 0)
 	get_parent().add_child(bullet_instance)
 
 func take_damage(damage):
 	current_health -= damage
-	print(current_health)
+	print("health: " + str(current_health) + "/" + str(MAX_HEALTH))
 	if current_health <= 0:
 		die()
 	
 func die():
+	print("You died")
 	hide()
 	call_deferred("reload_scene")
 	

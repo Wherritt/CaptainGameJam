@@ -1,8 +1,8 @@
-Panel
 CollisionShape2D
+Area2D
+Panel
 Sprite2D
 CharacterBody2D
 Marker2D
 RayCast2D
-Area2D
 StaticBody2D

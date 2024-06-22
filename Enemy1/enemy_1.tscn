@@ -1,46 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://df0toielugvoq"]
 
 [ext_resource type="Script" path="res://Enemy1/EnemyHit.gd" id="1_00ru5"]
-
-[sub_resource type="GDScript" id="GDScript_wh80w"]
-script/source = "extends CharacterBody2D
-
-var direction = 1
-const SPEED = 80
-@onready var ray_cast_left = $RayCastLeft
-@onready var ray_cast_right = $RayCastRight
-
-func _process(delta):
-	position.x += direction * SPEED * delta
-	if not ray_cast_right.is_colliding() and direction == 1:
-		direction = -1
-	elif not ray_cast_left.is_colliding() and direction == -1:
-		direction = 1
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_os55v"]
-size = Vector2(44, 35)
+[ext_resource type="Script" path="res://Enemy1/Enemy1Movement.gd" id="1_5a52t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7j26r"]
 size = Vector2(34, 30)
 
-[node name="Enemy1" type="CharacterBody2D"]
-script = SubResource("GDScript_wh80w")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8f4x"]
+size = Vector2(72, 44)
 
-[node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("1_00ru5")
-
-[node name="damageCollider" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -11.5)
-shape = SubResource("RectangleShape2D_os55v")
-
-[node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-40, 0)
-target_position = Vector2(0, 29)
-
-[node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(40, 0)
-target_position = Vector2(0, 29)
+[node name="Enemy1" type="CharacterBody2D" groups=["Enemy"]]
+collision_mask = 3
+script = ExtResource("1_5a52t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
@@ -53,4 +24,21 @@ offset_top = -28.0
 offset_right = 21.0
 offset_bottom = 6.0
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-40, 0)
+target_position = Vector2(0, 29)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(40, 0)
+target_position = Vector2(0, 29)
+
+[node name="DamageEmit" type="Area2D" parent="."]
+script = ExtResource("1_00ru5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageEmit"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_n8f4x")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="body_entered" from="DamageEmit" to="." method="_on_damage_emit_body_entered"]
+[connection signal="body_entered" from="DamageEmit" to="DamageEmit" method="_on_body_entered"]

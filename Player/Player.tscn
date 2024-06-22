@@ -13,7 +13,7 @@ shape = SubResource("CapsuleShape2D_abmer")
 [node name="FlipBody" type="Marker2D" parent="."]
 
 [node name="FirePoint" type="Marker2D" parent="FlipBody"]
-position = Vector2(17, -6)
+position = Vector2(24, -6)
 
 [node name="Panel" type="Panel" parent="FlipBody"]
 modulate = Color(0, 100, 1, 1)
