@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 30.0
+const SPEED = 300.0
 const JUMP_VELOCITY = -450.0
 const MAX_HEALTH = 10
 var current_health = MAX_HEALTH
