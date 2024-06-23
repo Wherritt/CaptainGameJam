@@ -1,12 +1,6 @@
 res://Main.tscn
-res://scripts/Bullet.gd
-res://Enemy1/EnemyHit.gd
 res://Enemy1/enemy_1.tscn
 res://Player/Player.tscn
-res://scripts/kill_zone.tscn
 res://scripts/bullet.tscn
-res://Player/Player.gd
-res://Enemy1/Enemy1Movement.gd
-res://scripts/portal.gd
 res://scripts/portal.tscn
-res://deposit_station.tscn
+res://Player/Player.gd
