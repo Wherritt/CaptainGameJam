@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bn4533emn1xoi" path="res://Player/Player.tscn" id="1_8yo01"]
 [ext_resource type="PackedScene" uid="uid://cmucj8w1ljvnl" path="res://scripts/kill_zone.tscn" id="2_darts"]
-[ext_resource type="PackedScene" uid="uid://df0toielugvoq" path="res://Enemy1/enemy_1.tscn" id="3_d1nq5"]
+[ext_resource type="PackedScene" uid="uid://2qdu38wisvi5" path="res://scripts/portal.tscn" id="4_a01u3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wgd2"]
 
@@ -17,9 +17,6 @@ position = Vector2(-2, 0)
 [node name="Player" parent="." instance=ExtResource("1_8yo01")]
 position = Vector2(8, 122)
 disable_mode = 2
-
-[node name="Enemy" parent="." instance=ExtResource("3_d1nq5")]
-position = Vector2(-259, 131)
 
 [node name="KillZone" parent="." instance=ExtResource("2_darts")]
 position = Vector2(0, 267)
@@ -69,10 +66,10 @@ offset_top = -40.0
 offset_right = 440.0
 offset_bottom = 40.0
 
-[node name="mainFloor" type="StaticBody2D" parent="."]
+[node name="mainFloor" type="StaticBody2D" parent="." groups=["MainFloor"]]
 position = Vector2(-511, -52)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="mainFloor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mainFloor" groups=["MainFloor"]]
 position = Vector2(514, 232)
 shape = SubResource("RectangleShape2D_1w8v2")
 
@@ -81,3 +78,6 @@ offset_left = -440.0
 offset_top = -40.0
 offset_right = 440.0
 offset_bottom = 40.0
+
+[node name="portal" parent="." instance=ExtResource("4_a01u3")]
+position = Vector2(-336, 21)

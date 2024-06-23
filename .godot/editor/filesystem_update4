@@ -7,3 +7,5 @@ res://scripts/kill_zone.tscn
 res://scripts/bullet.tscn
 res://Player/Player.gd
 res://Enemy1/Enemy1Movement.gd
+res://scripts/portal.gd
+res://scripts/portal.tscn
