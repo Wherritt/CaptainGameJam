@@ -9,3 +9,4 @@ res://Player/Player.gd
 res://Enemy1/Enemy1Movement.gd
 res://scripts/portal.gd
 res://scripts/portal.tscn
+res://deposit_station.tscn
