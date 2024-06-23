@@ -10,14 +10,14 @@ var enemy_one_current_health = enemy_one_max_health
 @onready var ray_cast_mid = $RayCastMid
 
 func _process(delta):
-	position.x += direction * SPEED * delta
-	#add gravity
+	#add gravity and move
 	if not is_on_floor():
 		position.y += 300 * delta
-		
-	var on_main_plat = is_on_main_platform()
+	elif is_on_floor():
+		position.x += direction * SPEED * delta
+
 	#ray casts one either side of enemy detect platform edge
-	if on_main_plat:
+	if is_on_main_platform():
 		if not ray_cast_right.is_colliding():
 			direction = -1
 		elif not ray_cast_left.is_colliding():
@@ -36,5 +36,5 @@ func take_enemy_damage(bullet_damage):
 	enemy_one_current_health -= bullet_damage
 	if enemy_one_current_health <= 0:
 		print("killed one Enemy1")
-		#destroy game object
+	#destroy game object
 		queue_free()

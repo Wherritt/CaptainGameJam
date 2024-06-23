@@ -79,5 +79,16 @@ offset_top = -40.0
 offset_right = 440.0
 offset_bottom = 40.0
 
-[node name="portal" parent="." instance=ExtResource("4_a01u3")]
+[node name="portals" parent="." instance=ExtResource("4_a01u3")]
 position = Vector2(-336, 21)
+
+[node name="portal1" type="Marker2D" parent="portals"]
+position = Vector2(657, 0)
+
+[node name="portal2" type="Marker2D" parent="portals"]
+
+[node name="portal3" type="Marker2D" parent="portals"]
+position = Vector2(-85, 87)
+
+[node name="portal4" type="Marker2D" parent="portals"]
+position = Vector2(751, 84)
