@@ -4,6 +4,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -450.0
 const MAX_HEALTH = 10
 var current_health = MAX_HEALTH
+var has_hat_on = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -53,6 +54,10 @@ func die():
 	print("You died")
 	hide()
 	call_deferred("reload_scene")
+	
+func has_hat() -> bool:
+	var hat_point = $hat_point
+	return hat_point.get_child_count() > 0
 	
 func reload_scene():
 	get_tree().reload_current_scene()

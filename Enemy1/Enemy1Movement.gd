@@ -8,6 +8,13 @@ var enemy_one_current_health = enemy_one_max_health
 @onready var ray_cast_left = $RayCastLeft
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_mid = $RayCastMid
+@onready var hat_1_node = preload("res://scripts/hat_1.tscn")
+var hat_instance = null
+
+func _ready():
+	if randf() < 0.5:
+		hat_instance = hat_1_node.instantiate()
+		$hat_point.add_child(hat_instance)
 
 func _process(delta):
 	#add gravity and move
@@ -35,6 +42,13 @@ func is_on_main_platform() -> bool:
 func take_enemy_damage(bullet_damage):
 	enemy_one_current_health -= bullet_damage
 	if enemy_one_current_health <= 0:
-		print("killed one Enemy1")
-	#destroy game object
 		queue_free()
+		if hat_instance:
+			$hat_point.remove_child(hat_instance)
+			hat_instance.position = position
+			call_deferred("add_and_setpos")
+			hat_instance.enemy_dropped_hat = true
+		print("killed one Enemy1")
+		
+func add_and_setpos():
+	get_tree().root.add_child(hat_instance)
