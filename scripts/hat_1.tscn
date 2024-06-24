@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn7vsp72o8foj"]
+
+[ext_resource type="Script" path="res://scripts/hat_1.gd" id="1_37ukv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v2t6x"]
+radius = 20.0
+
+[node name="hat1" type="Area2D" groups=["hat1"]]
+script = ExtResource("1_37ukv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v2t6x")
+
+[node name="Panel" type="Panel" parent="CollisionShape2D"]
+modulate = Color(100, 100, 1, 1)
+offset_left = -19.0
+offset_top = -19.0
+offset_right = 19.0
+offset_bottom = 19.0
+
+[node name="wearable_time" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
+[node name="on_ground_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="wearable_time" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="on_ground_timer" to="." method="_on_on_ground_timer_timeout"]

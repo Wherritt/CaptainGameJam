@@ -1,14 +1,32 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -450.0
+var SPEED
+var JUMP_VELOCITY
+var fire_rate
 const MAX_HEALTH = 10
 var current_health = MAX_HEALTH
-
+var has_hat_on = false
+var can_shoot = true
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var shoot_timer = $shoot_timer
 
 func _physics_process(delta):
+	#HAT POWER UP
+	if not has_hat() == "":
+		if has_hat() == "hat_1":
+			SPEED = 600
+			JUMP_VELOCITY = -600
+			fire_rate = 0.3
+		elif has_hat() == "bullet_hat":
+			fire_rate = 0.08
+			SPEED = 300
+			JUMP_VELOCITY = -430
+	else:
+		SPEED = 300
+		JUMP_VELOCITY = -430
+		fire_rate = 0.3
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -18,7 +36,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	# Handle shoot.
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_pressed("ui_accept") and can_shoot:
 		shoot()
 		
 	# Get the input direction and handle the movement/deceleration.
@@ -35,6 +53,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+
 func shoot():
 	var Bullet = preload("res://scripts/bullet.tscn")
 	var bullet_instance = Bullet.instantiate()
@@ -42,6 +61,11 @@ func shoot():
 	#change bullet direction of travel based on player's orientation
 	bullet_instance.direction = Vector2($FlipBody.scale.x, 0)
 	get_parent().add_child(bullet_instance)
+	can_shoot = false
+	shoot_timer.start(fire_rate)
+
+func _on_shoot_timer_timeout():
+	can_shoot = true
 
 func take_damage(damage):
 	current_health -= damage
@@ -53,6 +77,17 @@ func die():
 	print("You died")
 	hide()
 	call_deferred("reload_scene")
+	
+func has_hat() -> String:
+	var hat_point = $hat_point
+	if hat_point.get_child_count() > 0:
+		var hat_instance = hat_point.get_child(0)
+		if hat_instance:
+			if hat_instance.is_in_group("hat1"):
+				return "hat_1"
+			elif hat_instance.is_in_group("bullet_hat"):
+				return "bullet_hat"
+	return ""
 	
 func reload_scene():
 	get_tree().reload_current_scene()

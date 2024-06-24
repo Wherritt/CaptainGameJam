@@ -28,3 +28,10 @@ offset_left = 14.0
 offset_top = -11.0
 offset_right = 20.0
 offset_bottom = -2.0
+
+[node name="hat_point" type="Marker2D" parent="."]
+position = Vector2(0, -22)
+
+[node name="shoot_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
