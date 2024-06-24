@@ -52,3 +52,4 @@ func take_enemy_damage(bullet_damage):
 		
 func add_and_setpos():
 	get_tree().root.add_child(hat_instance)
+	hat_instance.on_ground_timer.start()

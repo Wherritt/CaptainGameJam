@@ -8,3 +8,4 @@ res://Enemy1/Enemy1Movement.gd
 res://hat_1.tscn
 res://scripts/hat_1.gd
 res://scripts/hat_1.tscn
+res://scripts/Bullet.gd
