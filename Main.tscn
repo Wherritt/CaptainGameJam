@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1w8v2"]
 size = Vector2(876, 74)
 
-[node name="Main" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 position = Vector2(-2, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -8,20 +8,12 @@ var enemy_one_current_health = enemy_one_max_health
 @onready var ray_cast_left = $RayCastLeft
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_mid = $RayCastMid
-@onready var hat_1_node = preload("res://scripts/hat_1.tscn")#"res://scripts/hat_1.tscn")
-@onready var bullet_hat = preload("res://scripts/bullet_hat.tscn")
+@onready var hat_1_node = preload("res://scripts/hat_1.tscn")
 var hat_instance = null
-var hats = []
 
 func _ready():
-	hats = [
-		hat_1_node,
-		bullet_hat
-	]
-	
 	if randf() < 0.5:
-		var random_hat = randi() % hats.size()
-		hat_instance = hats[random_hat].instantiate()
+		hat_instance = hat_1_node.instantiate()
 		$hat_point.add_child(hat_instance)
 
 func _process(delta):
@@ -60,4 +52,3 @@ func take_enemy_damage(bullet_damage):
 		
 func add_and_setpos():
 	get_tree().root.add_child(hat_instance)
-	hat_instance.on_ground_timer.start()
