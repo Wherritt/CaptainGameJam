@@ -8,12 +8,20 @@ var enemy_one_current_health = enemy_one_max_health
 @onready var ray_cast_left = $RayCastLeft
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_mid = $RayCastMid
-@onready var hat_1_node = preload("res://scripts/hat_1.tscn")
+@onready var hat_1_node = preload("res://scripts/hat_1.tscn")#"res://scripts/hat_1.tscn")
+@onready var bullet_hat = preload("res://scripts/bullet_hat.tscn")
 var hat_instance = null
+var hats = []
 
 func _ready():
+	hats = [
+		hat_1_node,
+		bullet_hat
+	]
+	
 	if randf() < 0.5:
-		hat_instance = hat_1_node.instantiate()
+		var random_hat = randi() % hats.size()
+		hat_instance = hats[random_hat].instantiate()
 		$hat_point.add_child(hat_instance)
 
 func _process(delta):

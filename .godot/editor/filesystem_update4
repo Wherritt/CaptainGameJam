@@ -9,3 +9,6 @@ res://hat_1.tscn
 res://scripts/hat_1.gd
 res://scripts/hat_1.tscn
 res://scripts/Bullet.gd
+res://bullet_hat.tscn
+res://scripts/bullet_hat.gd
+res://scripts/bullet_hat.tscn

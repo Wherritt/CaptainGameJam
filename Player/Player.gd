@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var SPEED
 var JUMP_VELOCITY
-var fire_rate = 0.3
+var fire_rate
 const MAX_HEALTH = 10
 var current_health = MAX_HEALTH
 var has_hat_on = false
@@ -12,13 +12,20 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var shoot_timer = $shoot_timer
 
 func _physics_process(delta):
-	#SPEED AND JUMP BOOST: HAT POWER UP
-	if has_hat():
-		SPEED = 600
-		JUMP_VELOCITY = -600
+	#HAT POWER UP
+	if not has_hat() == "":
+		if has_hat() == "hat_1":
+			SPEED = 600
+			JUMP_VELOCITY = -600
+			fire_rate = 0.3
+		elif has_hat() == "bullet_hat":
+			fire_rate = 0.08
+			SPEED = 300
+			JUMP_VELOCITY = -430
 	else:
 		SPEED = 300
-		JUMP_VELOCITY = -450
+		JUMP_VELOCITY = -430
+		fire_rate = 0.3
 		
 	# Add the gravity.
 	if not is_on_floor():
@@ -46,6 +53,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+
 func shoot():
 	var Bullet = preload("res://scripts/bullet.tscn")
 	var bullet_instance = Bullet.instantiate()
@@ -70,9 +78,16 @@ func die():
 	hide()
 	call_deferred("reload_scene")
 	
-func has_hat() -> bool:
+func has_hat() -> String:
 	var hat_point = $hat_point
-	return hat_point.get_child_count() > 0
+	if hat_point.get_child_count() > 0:
+		var hat_instance = hat_point.get_child(0)
+		if hat_instance:
+			if hat_instance.is_in_group("hat1"):
+				return "hat_1"
+			elif hat_instance.is_in_group("bullet_hat"):
+				return "bullet_hat"
+	return ""
 	
 func reload_scene():
 	get_tree().reload_current_scene()
