@@ -4,6 +4,7 @@ signal next_enemy_spawn_timer
 
 @onready var hat_1 = preload("res://scripts/hat_1.tscn")
 @onready var bullet_hat = preload("res://scripts/bullet_hat.tscn")
+@onready var health_hat = preload("res://scripts/health_hat.tscn")
 
 var hat_instance = null
 var hats = []
@@ -11,7 +12,8 @@ var hats = []
 func _ready():
 	hats = [
 		{"name": "hat_1", "scene": hat_1},
-		{"name": "bullet_hat", "scene": bullet_hat}
+		{"name": "bullet_hat", "scene": bullet_hat},
+		{"name": "health_hat", "scene": health_hat}
 	]
 	choose_hat_for_this_stage()
 	
@@ -32,6 +34,8 @@ func players_hat_type(hat_type) -> String:
 		return "hat_1"
 	elif hat_type == "bullet_hat":
 		return "bullet_hat"
+	elif hat_type == "health_hat":
+		return "health_hat"
 	return ""
 
 func next_stage():

@@ -90,7 +90,15 @@ func has_hat() -> String:
 				return "hat_1"
 			elif hat_instance.is_in_group("bullet_hat"):
 				return "bullet_hat"
+			elif hat_instance.is_in_group("health_hat"):
+				return "health_hat"
 	return ""
+
+func increase_health(health_amount_per_sec):
+	if current_health == MAX_HEALTH:
+		return
+	current_health += health_amount_per_sec
+	print("health = " + str(current_health))
 
 func remove_hat():
 	if not has_hat() == "":
