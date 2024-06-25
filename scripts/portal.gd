@@ -15,6 +15,11 @@ func _ready():
 		portal3_node.global_position,
 		portal4_node.global_position
 	]
+	
+func reduce_timer():
+	if $Timer.wait_time >= 0.3:
+		$Timer.wait_time -= 0.3
+		print("Spawn_timer reduced. Enemy spawn every: " + str($Timer.wait_time))
 
 func spawn_enemy():
 	var enemy_instance = enemy_one.instantiate()
@@ -26,3 +31,6 @@ func spawn_enemy():
 
 func _on_timer_timeout():
 	spawn_enemy()
+
+func _on_deposit_point_next_enemy_spawn_timer():
+	pass # Replace with function body.

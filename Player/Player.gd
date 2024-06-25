@@ -35,6 +35,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
+	if Input.is_action_just_pressed("ui_down"):
+		remove_hat()
+	
 	# Handle shoot.
 	if Input.is_action_pressed("ui_accept") and can_shoot:
 		shoot()
@@ -88,6 +91,14 @@ func has_hat() -> String:
 			elif hat_instance.is_in_group("bullet_hat"):
 				return "bullet_hat"
 	return ""
-	
+
+func remove_hat():
+	if not has_hat() == "":
+		var hat_being_worn = $hat_point.get_child(0)
+		hat_being_worn.queue_free()
+
 func reload_scene():
+	var all_hats = get_tree().get_nodes_in_group("hats")
+	for hat in all_hats:
+		hat.queue_free()
 	get_tree().reload_current_scene()

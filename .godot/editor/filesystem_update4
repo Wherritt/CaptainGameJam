@@ -5,3 +5,14 @@ res://scripts/bullet.tscn
 res://scripts/portal.tscn
 res://scripts/hat_1.tscn
 res://scripts/bullet_hat.tscn
+res://Enemy1/Enemy1Movement.gd
+res://Enemy1/EnemyHit.gd
+res://scripts/deposit_point.gd
+res://Player/Player.gd
+res://deposit_point.tscn
+res://scripts/portal.gd
+res://scripts/deposit_point.tscn
+res://scripts/Bullet.gd
+res://scripts/bullet_hat.gd
+res://scripts/hat_1.gd
+res://scripts/kill_zone.gd
