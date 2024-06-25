@@ -56,7 +56,6 @@ func take_enemy_damage(bullet_damage):
 			hat_instance.position = position
 			call_deferred("add_and_setpos")
 			hat_instance.enemy_dropped_hat = true
-		print("killed one Enemy1")
 		
 func add_and_setpos():
 	get_tree().root.add_child(hat_instance)

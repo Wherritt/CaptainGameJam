@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3enojlvb6j6d"]
+[gd_scene load_steps=3 format=3 uid="uid://bn7vsp72o8foj"]
 
 [ext_resource type="Script" path="res://scripts/hat_1.gd" id="1_37ukv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v2t6x"]
 radius = 20.0
 
-[node name="hat1" type="Area2D" groups=["hat1"]]
+[node name="hat1" type="Area2D" groups=["hat1", "hats"]]
 script = ExtResource("1_37ukv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
