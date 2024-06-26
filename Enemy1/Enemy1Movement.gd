@@ -23,11 +23,10 @@ func _ready():
 		bullet_hat,
 		health_hat
 	]
-	
-	if randf() < 0.5:
-		var random_hat = randi() % hats.size()
-		hat_instance = hats[random_hat].instantiate()
-		$hat_point.add_child(hat_instance)
+
+	var random_hat = randi() % hats.size()
+	hat_instance = hats[random_hat].instantiate()
+	$hat_point.add_child(hat_instance)
 
 	call_deferred("check_spawn_position")
 
@@ -41,7 +40,7 @@ func check_spawn_position():
 func _process(delta):
 	#add gravity and move
 	if not is_on_floor():
-		position.y += 300 * delta
+		position.y += 250 * delta
 	#move enemy horizontally
 	elif is_on_floor():
 		position.x += direction * SPEED * delta

@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ir2aitlvf2vv"]
+[gd_scene load_steps=5 format=3 uid="uid://bwlhm3b8osf60"]
 
 [ext_resource type="Script" path="res://scripts/flying_enemy.gd" id="1_ikxee"]
 [ext_resource type="Script" path="res://scripts/flyer_hit.gd" id="2_8mo85"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eajak"]
-radius = 16.0312
+radius = 21.9317
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w4qaw"]
-radius = 19.2354
+radius = 15.5563
 
 [node name="flying_enemy" type="CharacterBody2D" groups=["Enemy"]]
 rotation = 0.785398
@@ -33,3 +33,4 @@ script = ExtResource("2_8mo85")
 shape = SubResource("CircleShape2D_w4qaw")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="player_hit" from="Area2D" to="." method="_on_area_2d_player_hit"]

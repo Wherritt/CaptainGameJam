@@ -17,12 +17,15 @@ func _ready():
 		portal3_node.global_position,
 		portal4_node.global_position
 	]
-	
+
 	enemys = [
 		enemy_one,
+		enemy_one,
+		enemy_one,
+		flying_enemy,
 		flying_enemy
 	]
-	
+
 func reduce_timer():
 	if $Timer.wait_time >= 0.3:
 		$Timer.wait_time -= 0.3

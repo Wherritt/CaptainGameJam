@@ -1,15 +1,10 @@
 extends Area2D
 
 var enemy_dropped_hat = false
-@onready var wear_timer = $wearable_time
 @onready var on_ground_timer = $on_ground_timer
 @onready var health_timer = $health_timer
 var player = null
 const HEALTH_AMOUNT_PER_SEC = 1
-
-#How long the player can wear the hat
-func _on_wearable_time_timeout():
-	queue_free()
 
 func _on_on_ground_timer_timeout():
 	queue_free()
@@ -29,7 +24,6 @@ func handle_hat_transfer(hat_point):
 		get_parent().remove_child(self)
 		hat_point.add_child(self)
 		position = Vector2.ZERO
-		wear_timer.start()
 		on_ground_timer.stop()
 
 func _on_health_timer_timeout():

@@ -18,10 +18,6 @@ offset_top = -21.0
 offset_right = 21.0
 offset_bottom = 21.0
 
-[node name="wearable_time" type="Timer" parent="."]
-wait_time = 7.0
-one_shot = true
-
 [node name="on_ground_timer" type="Timer" parent="."]
 wait_time = 5.0
 
@@ -29,6 +25,5 @@ wait_time = 5.0
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="wearable_time" to="." method="_on_wearable_time_timeout"]
 [connection signal="timeout" from="on_ground_timer" to="." method="_on_on_ground_timer_timeout"]
 [connection signal="timeout" from="health_timer" to="." method="_on_health_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://de44sv6eg61bo"]
+[gd_scene load_steps=9 format=3 uid="uid://de44sv6eg61bo"]
 
 [ext_resource type="PackedScene" uid="uid://bn4533emn1xoi" path="res://Player/Player.tscn" id="1_8yo01"]
 [ext_resource type="PackedScene" uid="uid://cmucj8w1ljvnl" path="res://scripts/kill_zone.tscn" id="2_darts"]
@@ -9,7 +9,10 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wgd2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1w8v2"]
-size = Vector2(877, 28)
+size = Vector2(877, 10.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4kki"]
+size = Vector2(232, 14)
 
 [node name="Main" type="Node2D"]
 position = Vector2(-2, 0)
@@ -44,53 +47,8 @@ position = Vector2(0, 267)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("WorldBoundaryShape2D_0wgd2")
 
-[node name="leftPlat" type="StaticBody2D" parent="."]
-position = Vector2(-360, -35)
-scale = Vector2(0.2, 0.5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="leftPlat"]
-position = Vector2(514, 215)
-shape = SubResource("RectangleShape2D_1w8v2")
-one_way_collision = true
-one_way_collision_margin = 3.0
-
-[node name="Panel" type="Panel" parent="leftPlat"]
-offset_left = 74.0
-offset_top = 210.0
-offset_right = 954.0
-offset_bottom = 221.0
-
-[node name="rightPlat" type="StaticBody2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(160, -35)
-scale = Vector2(0.2, 0.5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="rightPlat"]
-position = Vector2(513.5, 232)
-shape = SubResource("RectangleShape2D_1w8v2")
-one_way_collision = true
-one_way_collision_margin = 3.0
-
-[node name="Panel" type="Panel" parent="rightPlat"]
-offset_left = 73.9999
-offset_top = 226.0
-offset_right = 954.0
-offset_bottom = 238.0
-
-[node name="depPlat" type="StaticBody2D" parent="."]
-position = Vector2(-100, -116)
-scale = Vector2(0.2, 0.5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="depPlat"]
-position = Vector2(514, 232)
-shape = SubResource("RectangleShape2D_1w8v2")
-one_way_collision = true
-
-[node name="Panel" type="Panel" parent="depPlat"]
-offset_left = 74.0
-offset_top = 226.0
-offset_right = 954.0
-offset_bottom = 238.0
+[node name="marker_point" parent="." instance=ExtResource("5_qy7yt")]
+position = Vector2(0, 120)
 
 [node name="mainFloor" type="StaticBody2D" parent="." groups=["MainFloor"]]
 position = Vector2(-620, -110)
@@ -107,7 +65,47 @@ offset_right = 954.0
 offset_bottom = 238.0
 metadata/_edit_use_anchors_ = true
 
-[node name="marker_point" parent="." instance=ExtResource("5_qy7yt")]
-position = Vector2(0, 120)
+[node name="right_plat" type="StaticBody2D" parent="."]
+position = Vector2(264, 80)
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_plat"]
+shape = SubResource("RectangleShape2D_y4kki")
+one_way_collision = true
+one_way_collision_margin = 5.0
+
+[node name="Panel" type="Panel" parent="right_plat"]
+offset_left = -116.0
+offset_top = -7.0
+offset_right = 116.0
+offset_bottom = 8.0
+
+[node name="left_plat" type="StaticBody2D" parent="."]
+position = Vector2(-267, 80)
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_plat"]
+shape = SubResource("RectangleShape2D_y4kki")
+one_way_collision = true
+one_way_collision_margin = 5.0
+
+[node name="Panel" type="Panel" parent="left_plat"]
+offset_left = -116.0
+offset_top = -7.0
+offset_right = 116.0
+offset_bottom = 8.0
+
+[node name="deposit_plat" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deposit_plat"]
+shape = SubResource("RectangleShape2D_y4kki")
+one_way_collision = true
+
+[node name="Panel" type="Panel" parent="deposit_plat"]
+offset_left = -116.0
+offset_top = -7.0
+offset_right = 116.0
+offset_bottom = 8.0
 
 [connection signal="next_enemy_spawn_timer" from="deposit_point" to="portals" method="reduce_timer"]
