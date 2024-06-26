@@ -1,6 +1,7 @@
 extends Area2D
 
 signal next_enemy_spawn_timer
+signal speed_up_flyers
 
 @onready var hat_1 = preload("res://scripts/hat_1.tscn")
 @onready var bullet_hat = preload("res://scripts/bullet_hat.tscn")
@@ -39,8 +40,8 @@ func players_hat_type(hat_type) -> String:
 	return ""
 
 func next_stage():
-	print("next stage accomplished")
 	emit_signal("next_enemy_spawn_timer")
+	emit_signal("speed_up_flyers")
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	var all_hats = get_tree().get_nodes_in_group("hats")
 	for enemy in enemies:
@@ -48,3 +49,4 @@ func next_stage():
 	for hat in all_hats:
 		hat.queue_free()
 	choose_hat_for_this_stage()
+	print("next stage")

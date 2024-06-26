@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://ir2aitlvf2vv"]
+
+[ext_resource type="Script" path="res://scripts/flying_enemy.gd" id="1_ikxee"]
+[ext_resource type="Script" path="res://scripts/flyer_hit.gd" id="2_8mo85"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eajak"]
+radius = 16.0312
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w4qaw"]
+radius = 19.2354
+
+[node name="flying_enemy" type="CharacterBody2D" groups=["Enemy"]]
+rotation = 0.785398
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_ikxee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eajak")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(100, 0, 1, 1)
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_8mo85")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_w4qaw")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -1,10 +1,10 @@
-Timer
-Panel
 CollisionShape2D
 Area2D
+Panel
+CharacterBody2D
 Marker2D
+Timer
 RigidBody2D
 Sprite2D
-CharacterBody2D
 RayCast2D
 StaticBody2D

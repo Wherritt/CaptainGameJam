@@ -12,9 +12,12 @@ var enemy_one_current_health = enemy_one_max_health
 @onready var bullet_hat = preload("res://scripts/bullet_hat.tscn")
 @onready var health_hat = preload("res://scripts/health_hat.tscn")
 var hat_instance = null
+var center_point = null
 var hats = []
 
 func _ready():
+	center_point = get_node("/root/Main/marker_point")
+
 	hats = [
 		hat_1_node,
 		bullet_hat,
@@ -26,10 +29,20 @@ func _ready():
 		hat_instance = hats[random_hat].instantiate()
 		$hat_point.add_child(hat_instance)
 
+	call_deferred("check_spawn_position")
+
+#check if enemy spawned on the left or the right side of the base platform
+func check_spawn_position():
+	if position.x < center_point.global_position.x:
+		direction = 1
+	else:
+		direction = -1
+
 func _process(delta):
 	#add gravity and move
 	if not is_on_floor():
 		position.y += 300 * delta
+	#move enemy horizontally
 	elif is_on_floor():
 		position.x += direction * SPEED * delta
 

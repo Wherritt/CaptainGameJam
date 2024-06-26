@@ -33,5 +33,6 @@ offset_bottom = -2.0
 position = Vector2(0, -22)
 
 [node name="shoot_timer" type="Timer" parent="."]
+wait_time = 0.8
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

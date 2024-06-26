@@ -19,3 +19,4 @@ offset_right = 22.0
 offset_bottom = 29.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="speed_up_flyers" from="." to="." method="_on_speed_up_flyers"]

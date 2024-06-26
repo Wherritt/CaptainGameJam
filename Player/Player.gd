@@ -15,18 +15,18 @@ func _physics_process(delta):
 	#HAT POWER UP
 	if not has_hat() == "":
 		if has_hat() == "hat_1":
-			SPEED = 600
+			SPEED = 300 * 100
 			JUMP_VELOCITY = -600
 			fire_rate = 0.3
 		elif has_hat() == "bullet_hat":
 			fire_rate = 0.08
-			SPEED = 300
+			SPEED = 200 * 100
 			JUMP_VELOCITY = -430
 	else:
-		SPEED = 300
+		SPEED = 200 * 100
 		JUMP_VELOCITY = -430
 		fire_rate = 0.3
-		
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -34,23 +34,24 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	
+
+	#"drop" hat player is wearing
 	if Input.is_action_just_pressed("ui_down"):
 		remove_hat()
-	
+
 	# Handle shoot.
 	if Input.is_action_pressed("ui_accept") and can_shoot:
 		shoot()
-		
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
-		velocity.x = direction * SPEED
-		if direction > 0:
-			$FlipBody.scale.x = 1
-		elif direction < 0:
+		velocity.x = direction * SPEED * delta
+		if direction < 0:
 			$FlipBody.scale.x = -1
+		elif direction > 0:
+			$FlipBody.scale.x = 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -75,12 +76,11 @@ func take_damage(damage):
 	print("health: " + str(current_health) + "/" + str(MAX_HEALTH))
 	if current_health <= 0:
 		die()
-	
+
 func die():
 	print("You died")
-	hide()
 	call_deferred("reload_scene")
-	
+
 func has_hat() -> String:
 	var hat_point = $hat_point
 	if hat_point.get_child_count() > 0:
