@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cmucj8w1ljvnl" path="res://scripts/kill_zone.tscn" id="2_darts"]
 [ext_resource type="PackedScene" uid="uid://2qdu38wisvi5" path="res://scripts/portal.tscn" id="4_a01u3"]
 [ext_resource type="PackedScene" uid="uid://dsbsdgbnsh86p" path="res://scripts/deposit_point.tscn" id="4_baaqj"]
-[ext_resource type="PackedScene" uid="uid://cakmdvghqmojl" path="res://marker_point.tscn" id="5_qy7yt"]
+[ext_resource type="PackedScene" path="res://marker_point.tscn" id="5_qy7yt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wgd2"]
 
