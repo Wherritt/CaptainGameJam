@@ -1,5 +1,4 @@
 res://Main.tscn
-res://scripts/portal.gd
 res://Player/Player.tscn
 res://scripts/deposit_point.tscn
 res://scripts/bullet.tscn
@@ -9,10 +8,3 @@ res://scripts/bullet_hat.tscn
 res://scripts/health_hat.tscn
 res://scripts/flying_enemy.tscn
 res://Enemy1/enemy_1.tscn
-res://Enemy1/Enemy1Movement.gd
-res://scripts/flyer_speed.gd
-res://scripts/flying_enemy.gd
-res://scripts/flyer_hit.gd
-res://scripts/bullet_hat.gd
-res://scripts/hat_1.gd
-res://scripts/health_hat.gd
