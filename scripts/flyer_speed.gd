@@ -10,3 +10,5 @@ func _ready():
 func _on_speed_up_flyers():
 	flyer_speed += 15
 	print("FLYER SPEED INCREASED: " + str(flyer_speed))
+#This script is a "singleton instance". 
+#It is stored under: Project->Project Settings->Autoload

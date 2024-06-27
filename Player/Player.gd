@@ -15,7 +15,7 @@ func _physics_process(delta):
 	#HAT POWER UP LOGIC
 	if not has_hat() == "":
 		if has_hat() == "hat_1":
-			SPEED = 300 * 100
+			SPEED = 330 * 100
 			JUMP_VELOCITY = -600
 			fire_rate = 0.3
 		elif has_hat() == "bullet_hat":

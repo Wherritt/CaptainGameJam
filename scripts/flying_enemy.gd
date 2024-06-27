@@ -24,6 +24,7 @@ func _ready():
 	speed = FlyerSpeed.flyer_speed
 
 func _process(delta):
+	#Using "state machine"
 	match state:
 		State.MOVE_TO_PLAYER:
 			if player:
@@ -42,5 +43,9 @@ func take_enemy_damage(bullet_damage):
 		queue_free()
 
 func _on_area_2d_player_hit():
-	fly_velocity = HIT_PATH[randi() % HIT_PATH.size()]
+	if position.x < player.position.x:
+		fly_velocity = HIT_PATH[0]
+	else:
+		fly_velocity = HIT_PATH[1]
+	#fly_velocity = HIT_PATH[randi() % HIT_PATH.size()]
 	state = State.MOVE_AWAY

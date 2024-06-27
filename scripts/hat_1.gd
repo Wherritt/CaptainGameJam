@@ -1,5 +1,5 @@
 extends Area2D
-
+#Hat_1/bullet_hat logic handled in player script
 var enemy_dropped_hat = false
 @onready var on_ground_timer = $on_ground_timer
 
