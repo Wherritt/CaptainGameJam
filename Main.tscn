@@ -24,7 +24,7 @@ position = Vector2(48, -37)
 disable_mode = 2
 
 [node name="deposit_point" parent="." instance=ExtResource("4_baaqj")]
-position = Vector2(1, -32)
+position = Vector2(1, -36)
 
 [node name="portals" parent="." instance=ExtResource("4_a01u3")]
 position = Vector2(-336, 21)
@@ -67,7 +67,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="right_plat" type="StaticBody2D" parent="."]
 position = Vector2(264, 80)
-collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="right_plat"]
 shape = SubResource("RectangleShape2D_y4kki")
@@ -82,7 +81,6 @@ offset_bottom = 8.0
 
 [node name="left_plat" type="StaticBody2D" parent="."]
 position = Vector2(-267, 80)
-collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left_plat"]
 shape = SubResource("RectangleShape2D_y4kki")
@@ -96,7 +94,6 @@ offset_right = 116.0
 offset_bottom = 8.0
 
 [node name="deposit_plat" type="StaticBody2D" parent="."]
-collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="deposit_plat"]
 shape = SubResource("RectangleShape2D_y4kki")
