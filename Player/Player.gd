@@ -69,6 +69,7 @@ func take_damage(damage):
 	current_health -= damage
 	print("health: " + str(current_health) + "/" + str(MAX_HEALTH))
 	if current_health <= 0:
+		current_health = 0
 		die()
 
 func die():
