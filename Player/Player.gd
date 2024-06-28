@@ -12,7 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var shoot_timer = $shoot_timer
 
 func _physics_process(delta):
-	#HAT POWER UP LOGIC
+	#HAT POWER UP
 	if not has_hat() == "":
 		if has_hat() == "hat_1":
 			SPEED = 340 * 100
@@ -30,12 +30,15 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
 	#"drop" hat player is wearing
 	if Input.is_action_just_pressed("ui_down"):
 		remove_hat()
+
 	# Handle shoot.
 	if Input.is_action_pressed("ui_accept") and can_shoot:
 		shoot()
@@ -45,12 +48,15 @@ func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED * delta
-		if direction != 0:
-			$FlipBody.scale.x = direction
+		if direction < 0:
+			$FlipBody.scale.x = -1
+		elif direction > 0:
+			$FlipBody.scale.x = 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
 
 func shoot():
 	var Bullet = preload("res://scripts/bullet.tscn")
