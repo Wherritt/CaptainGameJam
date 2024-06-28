@@ -2,6 +2,7 @@ extends Area2D
 
 signal next_enemy_spawn_timer
 signal speed_up_flyers
+signal increase_stage_number
 
 @onready var hat_1 = preload("res://scripts/hat_1.tscn")
 @onready var bullet_hat = preload("res://scripts/bullet_hat.tscn")
@@ -9,6 +10,7 @@ signal speed_up_flyers
 
 var hat_instance = null
 var hats = []
+var stage_number
 
 func _ready():
 	hats = [
@@ -17,6 +19,8 @@ func _ready():
 		{"name": "health_hat", "scene": health_hat}
 	]
 	choose_hat_for_this_stage()
+	stage_number = singleton.stage_number
+	print("stage: " + str(stage_number))
 	
 func choose_hat_for_this_stage():
 	var hat_choice = randi() % hats.size()
@@ -41,7 +45,9 @@ func players_hat_type(hat_type) -> String:
 
 func next_stage():
 	emit_signal("next_enemy_spawn_timer")
+	#after you die and reset, these two signals below dont emit anymore.
 	emit_signal("speed_up_flyers")
+	emit_signal("increase_stage_number")
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	var all_hats = get_tree().get_nodes_in_group("hats")
 	for enemy in enemies:
@@ -49,4 +55,3 @@ func next_stage():
 	for hat in all_hats:
 		hat.queue_free()
 	choose_hat_for_this_stage()
-	print("next stage")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwlhm3b8osf60"]
+[gd_scene load_steps=5 format=3 uid="uid://dsjefpvmmvj8j"]
 
 [ext_resource type="Script" path="res://scripts/flying_enemy.gd" id="1_ikxee"]
 [ext_resource type="Script" path="res://scripts/flyer_hit.gd" id="2_8mo85"]

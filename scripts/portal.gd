@@ -25,6 +25,7 @@ func _ready():
 		flying_enemy,
 		flying_enemy
 	]
+	
 
 func reduce_timer():
 	if $Timer.wait_time >= 0.3:
