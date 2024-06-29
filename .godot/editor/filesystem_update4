@@ -1,5 +1,5 @@
-res://Main.tscn
 res://Player/Player.tscn
+res://Main.tscn
 res://scripts/deposit_point.tscn
 res://scripts/bullet.tscn
 res://scripts/portal.tscn
@@ -9,4 +9,3 @@ res://scripts/health_hat.tscn
 res://scripts/flying_enemy.tscn
 res://Enemy1/enemy_1.tscn
 res://scripts/key.tscn
-res://Player/Player.gd
