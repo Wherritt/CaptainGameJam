@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var SPEED
-var JUMP_VELOCITY
+var JUMP_VELOCITY = -430
 var fire_rate
 const MAX_HEALTH = 10
 var current_health = MAX_HEALTH
@@ -15,13 +15,11 @@ func _physics_process(delta):
 	#HAT POWER UP LOGIC
 	if not has_hat() == "":
 		if has_hat() == "hat_1":
-			SPEED = 340 * 100
-			JUMP_VELOCITY = -580
+			SPEED = 350 * 100
 			fire_rate = 0.3
 		elif has_hat() == "bullet_hat":
 			fire_rate = 0.08
 			SPEED = 200 * 100
-			JUMP_VELOCITY = -430
 	else:
 		SPEED = 200 * 100
 		JUMP_VELOCITY = -430
