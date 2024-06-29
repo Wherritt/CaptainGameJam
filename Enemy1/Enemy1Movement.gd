@@ -11,6 +11,7 @@ var enemy_one_current_health = enemy_one_max_health
 @onready var hat_1_node = preload("res://scripts/hat_1.tscn")
 @onready var bullet_hat = preload("res://scripts/bullet_hat.tscn")
 @onready var health_hat = preload("res://scripts/health_hat.tscn")
+@onready var key = preload("res://scripts/key.tscn")
 var hat_instance = null
 var center_point = null
 var hats = []
@@ -21,12 +22,21 @@ func _ready():
 	hats = [
 		hat_1_node,
 		bullet_hat,
-		health_hat
+		health_hat,
+		key
 	]
-
+	
 	var random_hat = randi() % hats.size()
-	hat_instance = hats[random_hat].instantiate()
-	$hat_point.add_child(hat_instance)
+#makes sure key appears if five enemies have spawned
+	if singleton.enemy_spawn_amount >= 5:
+		hat_instance = hats[3].instantiate()
+		$hat_point.add_child(hat_instance)
+		singleton.enemy_spawn_amount = 0
+	else:
+		hat_instance = hats[random_hat].instantiate()
+		$hat_point.add_child(hat_instance)
+		if hat_instance == hats[3]:#key
+			singleton.enemy_spawn_amount = 0
 
 	call_deferred("check_spawn_position")
 

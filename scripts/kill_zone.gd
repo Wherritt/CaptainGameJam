@@ -1,11 +1,11 @@
 extends Area2D
 
+var player
+func _ready():
+	player = get_tree().root.get_node("Main/Player")
+
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
-		print("You died")
-		call_deferred("reload_scene")
+		player.die()
 	elif not body.is_in_group("Player"):
 		body.queue_free()
-		
-func reload_scene():
-	get_tree().reload_current_scene()

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var SPEED
-var JUMP_VELOCITY
+var JUMP_VELOCITY = -430
 var fire_rate
 const MAX_HEALTH = 10
 var current_health = MAX_HEALTH
@@ -12,16 +12,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var shoot_timer = $shoot_timer
 
 func _physics_process(delta):
-	#HAT POWER UP
+	#HAT POWER UP LOGIC
 	if not has_hat() == "":
 		if has_hat() == "hat_1":
-			SPEED = 300 * 100
-			JUMP_VELOCITY = -600
+			SPEED = 350 * 100
 			fire_rate = 0.3
 		elif has_hat() == "bullet_hat":
 			fire_rate = 0.08
 			SPEED = 200 * 100
-			JUMP_VELOCITY = -430
 	else:
 		SPEED = 200 * 100
 		JUMP_VELOCITY = -430
@@ -30,15 +28,13 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
 	#"drop" hat player is wearing
 	if Input.is_action_just_pressed("ui_down"):
 		remove_hat()
-
+		remove_key()
 	# Handle shoot.
 	if Input.is_action_pressed("ui_accept") and can_shoot:
 		shoot()
@@ -48,15 +44,12 @@ func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED * delta
-		if direction < 0:
-			$FlipBody.scale.x = -1
-		elif direction > 0:
-			$FlipBody.scale.x = 1
+		if direction != 0:
+			$FlipBody.scale.x = direction
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-
 
 func shoot():
 	var Bullet = preload("res://scripts/bullet.tscn")
@@ -78,8 +71,16 @@ func take_damage(damage):
 		die()
 
 func die():
-	print("You died")
-	call_deferred("reload_scene")
+	remove_all_hats()
+	singleton._on_player_dead()
+
+func has_key():
+	var key_point = $key_point
+	if key_point.get_child_count() > 0:
+		singleton.enemy_spawn_amount = 0
+		print(singleton.enemy_spawn_amount)
+		return true
+	return false
 
 func has_hat() -> String:
 	var hat_point = $hat_point
@@ -105,8 +106,12 @@ func remove_hat():
 		var hat_being_worn = $hat_point.get_child(0)
 		hat_being_worn.queue_free()
 
-func reload_scene():
+func remove_key():
+	if has_key():
+		var key_being_held = $key_point.get_child(0)
+		key_being_held.queue_free()
+
+func remove_all_hats():
 	var all_hats = get_tree().get_nodes_in_group("hats")
 	for hat in all_hats:
 		hat.queue_free()
-	get_tree().reload_current_scene()

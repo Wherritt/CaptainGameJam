@@ -8,7 +8,7 @@ func _on_on_ground_timer_timeout():
 
 func _on_body_entered(body):
 	if body.is_in_group("Player") and enemy_dropped_hat:
-		if not body.has_hat():
+		if not body.has_hat() and not body.has_key():
 			var player_hat_point = body.get_node("hat_point")
 #call deferred below
 			call_deferred("handle_hat_transfer", player_hat_point)

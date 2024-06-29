@@ -29,6 +29,8 @@ offset_top = -11.0
 offset_right = 20.0
 offset_bottom = -2.0
 
+[node name="key_point" type="Marker2D" parent="."]
+
 [node name="hat_point" type="Marker2D" parent="."]
 position = Vector2(0, -22)
 

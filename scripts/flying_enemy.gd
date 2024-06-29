@@ -21,7 +21,7 @@ var HIT_PATH = [
 
 func _ready():
 	player = get_tree().root.get_node("Main/Player")
-	speed = FlyerSpeed.flyer_speed
+	speed = singleton.flyer_speed
 
 func _process(delta):
 	match state:

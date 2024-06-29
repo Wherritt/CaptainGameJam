@@ -25,6 +25,7 @@ func _ready():
 		flying_enemy,
 		flying_enemy
 	]
+	
 
 func reduce_timer():
 	if $Timer.wait_time >= 0.3:
@@ -39,6 +40,7 @@ func spawn_enemy():
 	var random_portal = randi() % portal_positions.size()
 	enemy_instance.position = portal_positions[random_portal]
 	get_parent().add_child(enemy_instance)
+	singleton.add_enemy_spawn()
 
 func _on_timer_timeout():
 	spawn_enemy()
