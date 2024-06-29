@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://g7wel4jirsyq"]
+
+[ext_resource type="Script" path="res://scripts/key.gd" id="1_t2cfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03i07"]
+size = Vector2(20, 60)
+
+[node name="key" type="Area2D" groups=["hats", "key"]]
+script = ExtResource("1_t2cfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_03i07")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(100, 100, 100, 1)
+offset_left = -9.0
+offset_top = -47.0
+offset_right = 9.0
+offset_bottom = 16.0
+
+[node name="on_ground_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="on_ground_timer" to="." method="_on_on_ground_timer_timeout"]

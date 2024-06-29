@@ -36,6 +36,7 @@ func _physics_process(delta):
 	#"drop" hat player is wearing
 	if Input.is_action_just_pressed("ui_down"):
 		remove_hat()
+		remove_key()
 	# Handle shoot.
 	if Input.is_action_pressed("ui_accept") and can_shoot:
 		shoot()
@@ -73,9 +74,16 @@ func take_damage(damage):
 		die()
 
 func die():
-	print("You died")
-	singleton.stage_number = 1
-	call_deferred("reload_scene")
+	remove_all_hats()
+	singleton._on_player_dead()
+
+func has_key():
+	var key_point = $key_point
+	if key_point.get_child_count() > 0:
+		singleton.enemy_spawn_amount = 0
+		print(singleton.enemy_spawn_amount)
+		return true
+	return false
 
 func has_hat() -> String:
 	var hat_point = $hat_point
@@ -101,8 +109,12 @@ func remove_hat():
 		var hat_being_worn = $hat_point.get_child(0)
 		hat_being_worn.queue_free()
 
-func reload_scene():
+func remove_key():
+	if has_key():
+		var key_being_held = $key_point.get_child(0)
+		key_being_held.queue_free()
+
+func remove_all_hats():
 	var all_hats = get_tree().get_nodes_in_group("hats")
 	for hat in all_hats:
 		hat.queue_free()
-	get_tree().reload_current_scene()
