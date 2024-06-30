@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://dghu3bu2eb7r3"
+path="res://.godot/imported/Cowboy Movie.ttf-8fe121bc6b7c18602dd358cf39b8b5cf.fontdata"
+
+[deps]
+
+source_file="res://Assets/Cowboy Movie.ttf"
+dest_files=["res://.godot/imported/Cowboy Movie.ttf-8fe121bc6b7c18602dd358cf39b8b5cf.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

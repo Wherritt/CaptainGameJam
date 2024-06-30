@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctqktqnx37ri8"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_ubiop"]
+[ext_resource type="Texture2D" uid="uid://bah6j6l5r4x86" path="res://Assets/ResizedBackground.png" id="2_e3gam"]
+[ext_resource type="Texture2D" uid="uid://b3sapqs63qsd4" path="res://Assets/Title.png" id="3_5r864"]
+[ext_resource type="Theme" uid="uid://cjjbxe3mc4y4l" path="res://Assets/CowboyMoviesTheme.tres" id="3_xmdq2"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ubiop")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_e3gam")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(970, 308)
+scale = Vector2(0.475076, 0.475075)
+texture = ExtResource("3_5r864")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 446.185)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -229.0
+offset_top = -407.0
+offset_right = 230.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+theme = ExtResource("3_xmdq2")
+text = "PLAY
+"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+theme = ExtResource("3_xmdq2")
+text = "QUIT"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,3 +1,7 @@
+TextureRect
+Button
+VBoxContainer
+MarginContainer
 Panel
 CollisionShape2D
 StaticBody2D
