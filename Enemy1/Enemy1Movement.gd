@@ -9,17 +9,39 @@ var enemy_one_current_health = enemy_one_max_health
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_mid = $RayCastMid
 @onready var hat_1_node = preload("res://scripts/hat_1.tscn")
+@onready var bullet_hat = preload("res://scripts/bullet_hat.tscn")
+@onready var health_hat = preload("res://scripts/health_hat.tscn")
 var hat_instance = null
+var center_point = null
+var hats = []
 
 func _ready():
-	if randf() < 0.5:
-		hat_instance = hat_1_node.instantiate()
-		$hat_point.add_child(hat_instance)
+	center_point = get_node("/root/Main/marker_point")
+
+	hats = [
+		hat_1_node,
+		bullet_hat,
+		health_hat
+	]
+
+	var random_hat = randi() % hats.size()
+	hat_instance = hats[random_hat].instantiate()
+	$hat_point.add_child(hat_instance)
+
+	call_deferred("check_spawn_position")
+
+#check if enemy spawned on the left or the right side of the base platform
+func check_spawn_position():
+	if position.x < center_point.global_position.x:
+		direction = 1
+	else:
+		direction = -1
 
 func _process(delta):
 	#add gravity and move
 	if not is_on_floor():
-		position.y += 300 * delta
+		position.y += 250 * delta
+	#move enemy horizontally
 	elif is_on_floor():
 		position.x += direction * SPEED * delta
 
@@ -48,7 +70,7 @@ func take_enemy_damage(bullet_damage):
 			hat_instance.position = position
 			call_deferred("add_and_setpos")
 			hat_instance.enemy_dropped_hat = true
-		print("killed one Enemy1")
 		
 func add_and_setpos():
 	get_tree().root.add_child(hat_instance)
+	hat_instance.on_ground_timer.start()

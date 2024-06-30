@@ -25,16 +25,16 @@ offset_top = -28.0
 offset_right = 21.0
 offset_bottom = 6.0
 
-[node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-40, 0)
-target_position = Vector2(0, 21)
-
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(40, 0)
-target_position = Vector2(0, 22)
+target_position = Vector2(0, 15)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-39, 0)
+target_position = Vector2(0, 15)
 
 [node name="RayCastMid" type="RayCast2D" parent="."]
-target_position = Vector2(0, 22)
+target_position = Vector2(0, 15)
 
 [node name="DamageEmit" type="Area2D" parent="."]
 script = ExtResource("1_00ru5")
@@ -46,6 +46,4 @@ shape = SubResource("RectangleShape2D_n8f4x")
 [node name="hat_point" type="Marker2D" parent="."]
 position = Vector2(0, -40)
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="body_entered" from="DamageEmit" to="." method="_on_damage_emit_body_entered"]
 [connection signal="body_entered" from="DamageEmit" to="DamageEmit" method="_on_body_entered"]
