@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cakmdvghqmojl"]
+
+[node name="marker_point" type="Marker2D"]

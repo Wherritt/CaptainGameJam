@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsbsdgbnsh86p"]
+
+[ext_resource type="Script" path="res://scripts/deposit_point.gd" id="1_8ttiv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyk21"]
+size = Vector2(44, 56)
+
+[node name="deposit_point" type="Area2D"]
+script = ExtResource("1_8ttiv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hyk21")
+
+[node name="Panel" type="Panel" parent="CollisionShape2D"]
+modulate = Color(100, 100, 100, 1)
+offset_left = -22.0
+offset_top = -29.0
+offset_right = 22.0
+offset_bottom = 29.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="speed_up_flyers" from="." to="." method="_on_speed_up_flyers"]

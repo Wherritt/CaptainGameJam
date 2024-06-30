@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://skhk44vboxbn"]
+
+[ext_resource type="Script" path="res://scripts/health_hat.gd" id="1_sllaj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ree3m"]
+radius = 22.0227
+
+[node name="health_hat" type="Area2D" groups=["hats", "health_hat"]]
+script = ExtResource("1_sllaj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ree3m")
+
+[node name="Panel" type="Panel" parent="CollisionShape2D"]
+modulate = Color(0, 100, 100, 1)
+offset_left = -21.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 21.0
+
+[node name="on_ground_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="health_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="on_ground_timer" to="." method="_on_on_ground_timer_timeout"]
+[connection signal="timeout" from="health_timer" to="." method="_on_health_timer_timeout"]
