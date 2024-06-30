@@ -11,6 +11,15 @@ var can_shoot = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var shoot_timer = $shoot_timer
 
+func _ready():
+	$Sprite2D/AnimationPlayer.play("Idle Right")
+	var FaceDirection = Input.get_axis("Left","Right")
+#	if FaceDirection:
+#		print("facing" + FaceDirection)
+#		$Sprite2D/AnimationPlayer.play("idle")
+#	else:
+#		$Sprite2D/AnimationPlayer.play("Idle Right")
+
 func _physics_process(delta):
 	#HAT POWER UP
 	if not has_hat() == "":
@@ -49,11 +58,19 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction * SPEED * delta
 		if direction < 0:
+			
+			$Sprite2D/AnimationPlayer.play("Run Left")
 			$FlipBody.scale.x = -1
 		elif direction > 0:
+			$Sprite2D/AnimationPlayer.play("Run right")
 			$FlipBody.scale.x = 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if $FlipBody.scale.x == -1:
+			$Sprite2D/AnimationPlayer.play("idle")
+		elif $FlipBody.scale.x == 1:
+			$Sprite2D/AnimationPlayer.play("Idle Right")
+
 
 	move_and_slide()
 

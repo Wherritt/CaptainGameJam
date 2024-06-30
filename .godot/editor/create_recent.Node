@@ -1,3 +1,5 @@
+AnimationPlayer
+Sprite2D
 TextureRect
 Button
 VBoxContainer
@@ -10,5 +12,4 @@ CharacterBody2D
 Marker2D
 Timer
 RigidBody2D
-Sprite2D
 RayCast2D
