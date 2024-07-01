@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://df0toielugvoq"]
+[gd_scene load_steps=6 format=3 uid="uid://df0toielugvoq"]
 
 [ext_resource type="Script" path="res://Enemy1/EnemyHit.gd" id="1_00ru5"]
 [ext_resource type="Script" path="res://Enemy1/Enemy1Movement.gd" id="1_5a52t"]
+[ext_resource type="Texture2D" uid="uid://cb8a7yadb8uni" path="res://Assets/Enemies.png" id="3_aulqk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7j26r"]
 size = Vector2(34, 30)
@@ -19,6 +20,7 @@ position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_7j26r")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 modulate = Color(100, 1, 1, 1)
 offset_left = -21.0
 offset_top = -28.0
@@ -45,5 +47,12 @@ shape = SubResource("RectangleShape2D_n8f4x")
 
 [node name="hat_point" type="Marker2D" parent="."]
 position = Vector2(0, -40)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -12)
+scale = Vector2(1.91447, 1.91447)
+texture = ExtResource("3_aulqk")
+region_enabled = true
+region_rect = Rect2(3, 80, 57, 36)
 
 [connection signal="body_entered" from="DamageEmit" to="DamageEmit" method="_on_body_entered"]

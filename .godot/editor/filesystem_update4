@@ -12,3 +12,6 @@ res://scripts/hat_1.tscn
 res://scripts/deposit_point.tscn
 res://scripts/hat_1.gd
 res://scripts/health_hat.gd
+res://Enemy1/enemy_1.tscn
+res://scripts/flying_enemy.tscn
+res://scripts/flying_enemy.gd

@@ -35,6 +35,22 @@ func _process(delta):
 			if fly_away_timer >= fly_away_duration:
 				state = State.MOVE_TO_PLAYER
 				fly_away_timer = 0
+	var direction = (player.position - position).normalized()
+	if direction.x < 0:
+			$Marker2D.scale.x = -1
+			$FlyingSprite/AnimationPlayer.play("Fly_L")
+			rotation = -45
+	elif direction.x > 0:
+			$Marker2D.scale.x = 1
+			$FlyingSprite/AnimationPlayer.play("Fly_R")
+			rotation = 45
+			
+#	if $Marker2D.scale.x == 1:
+#		$FlyingSprite/AnimationPlayer.play("Fly_L")
+#		rotation = -45
+#	else:
+#		$FlyingSprite/AnimationPlayer.play("Fly_R")
+#		rotation = 45
 
 func take_enemy_damage(bullet_damage):
 	current_health -= bullet_damage
@@ -44,3 +60,5 @@ func take_enemy_damage(bullet_damage):
 func _on_area_2d_player_hit():
 	fly_velocity = HIT_PATH[randi() % HIT_PATH.size()]
 	state = State.MOVE_AWAY
+	
+

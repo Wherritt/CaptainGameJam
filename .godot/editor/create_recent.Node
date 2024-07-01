@@ -1,5 +1,6 @@
-Sprite2D
 AnimationPlayer
+Marker2D
+Sprite2D
 TextureRect
 Button
 VBoxContainer
@@ -9,6 +10,5 @@ CollisionShape2D
 StaticBody2D
 Area2D
 CharacterBody2D
-Marker2D
 Timer
 RigidBody2D
