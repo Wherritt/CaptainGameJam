@@ -1,5 +1,5 @@
-res://main_menu.tscn
-res://Assets/CowboyMoviesTheme.tres
 res://Main.tscn
+res://Assets/CowboyMoviesTheme.tres
+res://main_menu.tscn
 res://Player/Player.gd
-res://Main.gd
+res://Player/Player.tscn

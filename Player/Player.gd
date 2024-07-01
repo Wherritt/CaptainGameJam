@@ -14,11 +14,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	$Sprite2D/AnimationPlayer.play("Idle Right")
 	var FaceDirection = Input.get_axis("Left","Right")
-#	if FaceDirection:
-#		print("facing" + FaceDirection)
-#		$Sprite2D/AnimationPlayer.play("idle")
-#	else:
-#		$Sprite2D/AnimationPlayer.play("Idle Right")
 
 func _physics_process(delta):
 	#HAT POWER UP
@@ -41,37 +36,46 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_up") and is_on_floor():
+	if Input.is_action_just_pressed("Up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	#"drop" hat player is wearing
-	if Input.is_action_just_pressed("ui_down"):
+	if Input.is_action_just_pressed("Down"):
 		remove_hat()
 
 	# Handle shoot.
-	if Input.is_action_pressed("ui_accept") and can_shoot:
+	if Input.is_action_pressed("Shoot") and can_shoot:
 		shoot()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("Left", "Right")
 	if direction:
 		velocity.x = direction * SPEED * delta
 		if direction < 0:
-			
-			$Sprite2D/AnimationPlayer.play("Run Left")
 			$FlipBody.scale.x = -1
 		elif direction > 0:
-			$Sprite2D/AnimationPlayer.play("Run right")
 			$FlipBody.scale.x = 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		if $FlipBody.scale.x == -1:
-			$Sprite2D/AnimationPlayer.play("idle")
-		elif $FlipBody.scale.x == 1:
-			$Sprite2D/AnimationPlayer.play("Idle Right")
-
-
+		
+	#Animation: if running and aiming in same direction
+	if direction < 0 and $FlipBody.scale.x == -1 and Input.is_action_pressed("Shoot"):
+		$Sprite2D/AnimationPlayer.play("Shoot_Run_L")
+	elif direction > 0 and $FlipBody.scale.x == 1 and Input.is_action_pressed("Shoot"):
+		$Sprite2D/AnimationPlayer.play("Shoot_Run_R")
+	elif direction < 0 and $FlipBody.scale.x == -1:
+		$Sprite2D/AnimationPlayer.play("Run_L")
+	elif direction > 0 and $FlipBody.scale.x == 1:
+		$Sprite2D/AnimationPlayer.play("Run_R")
+	elif $FlipBody.scale.x == -1 and Input.is_action_pressed("Shoot"):
+		$Sprite2D/AnimationPlayer.play("Shoot_Idle_L")
+	elif $FlipBody.scale.x == 1 and Input.is_action_pressed("Shoot"):
+		$Sprite2D/AnimationPlayer.play("Shoot_Idle_R")
+	elif $FlipBody.scale.x == -1:
+		$Sprite2D/AnimationPlayer.play("Idle_L")
+	elif $FlipBody.scale.x == 1:
+		$Sprite2D/AnimationPlayer.play("Idle_R")
 	move_and_slide()
 
 
