@@ -1,10 +1,62 @@
-[gd_scene load_steps=4 format=3 uid="uid://bn7vsp72o8foj"]
+[gd_scene load_steps=8 format=3 uid="uid://bn7vsp72o8foj"]
 
 [ext_resource type="Script" path="res://scripts/hat_1.gd" id="1_37ukv"]
 [ext_resource type="Texture2D" uid="uid://b8jfdm0qw4xg6" path="res://Assets/HatSheet.png" id="2_c60ui"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v2t6x"]
 radius = 20.0
+
+[sub_resource type="Animation" id="Animation_tyybn"]
+resource_name = "Hat_1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vmcnx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qss4l"]
+resource_name = "Hat_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pyysv"]
+_data = {
+"Hat_1": SubResource("Animation_tyybn"),
+"Hat_2": SubResource("Animation_qss4l"),
+"RESET": SubResource("Animation_vmcnx")
+}
 
 [node name="hat1" type="Area2D" groups=["hat1", "hats"]]
 script = ExtResource("1_37ukv")
@@ -26,8 +78,15 @@ wait_time = 5.0
 [node name="Speed" type="Sprite2D" parent="."]
 position = Vector2(1, -4)
 texture = ExtResource("2_c60ui")
-region_enabled = true
+hframes = 2
+vframes = 3
+frame = 2
 region_rect = Rect2(1, 88, 62, 31)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Speed"]
+libraries = {
+"": SubResource("AnimationLibrary_pyysv")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="on_ground_timer" to="." method="_on_on_ground_timer_timeout"]

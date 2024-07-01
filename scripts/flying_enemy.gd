@@ -36,12 +36,12 @@ func _process(delta):
 				state = State.MOVE_TO_PLAYER
 				fly_away_timer = 0
 #I know its messy but its the way that made most sense to me - cookies
-	var direction = (player.position - position).normalized()
-	if direction.x < 0:
+	var direction2 = (player.position - position).normalized()
+	if direction2.x < 0:
 			$Marker2D.scale.x = -1
 			$FlyingSprite/AnimationPlayer.play("Fly_L")
 			rotation = -45
-	elif direction.x > 0:
+	elif direction2.x > 0:
 			$Marker2D.scale.x = 1
 			$FlyingSprite/AnimationPlayer.play("Fly_R")
 			rotation = 45

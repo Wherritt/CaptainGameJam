@@ -3,8 +3,11 @@ extends Area2D
 var enemy_dropped_hat = false
 @onready var on_ground_timer = $on_ground_timer
 
+func _dropHatHighlight():
+	if enemy_dropped_hat == true:
+		$Speed/AnimationPlayer.play("Hat_2")
+
 func _on_on_ground_timer_timeout():
-	$Speed.texture = load("$HatHighlighted")
 	queue_free()
 
 func _on_body_entered(body):
@@ -21,5 +24,5 @@ func handle_hat_transfer(hat_point):
 		get_parent().remove_child(self)
 		hat_point.add_child(self)
 		position = Vector2.ZERO
-		$Speed.texture = load("res://Assets/Layer 18.png")
+		$Speed/AnimationPlayer.play("Hat_1")
 		on_ground_timer.stop()
