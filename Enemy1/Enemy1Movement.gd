@@ -51,6 +51,13 @@ func _process(delta):
 			direction = -1
 		elif not ray_cast_left.is_colliding():
 			direction = 1
+
+	if direction < 0:
+#			$Marker2D2.scale.x = -1
+			$CrawlingSprite/AnimationPlayer.play("Crawl_L")
+	elif direction > 0:
+#			$Marker2D2.scale.x = 1
+			$CrawlingSprite/AnimationPlayer.play("Crawl_R")
 	#move and slide is meant for kinematic bodies; prevents them from falling though
 	move_and_slide()
 

@@ -15,3 +15,4 @@ res://scripts/health_hat.gd
 res://Enemy1/enemy_1.tscn
 res://scripts/flying_enemy.tscn
 res://scripts/flying_enemy.gd
+res://Enemy1/Enemy1Movement.gd

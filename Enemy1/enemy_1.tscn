@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://df0toielugvoq"]
+[gd_scene load_steps=10 format=3 uid="uid://df0toielugvoq"]
 
 [ext_resource type="Script" path="res://Enemy1/EnemyHit.gd" id="1_00ru5"]
 [ext_resource type="Script" path="res://Enemy1/Enemy1Movement.gd" id="1_5a52t"]
@@ -9,6 +9,59 @@ size = Vector2(34, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8f4x"]
 size = Vector2(48, 36)
+
+[sub_resource type="Animation" id="Animation_r3e4i"]
+resource_name = "Crawl_L"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bed00"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2oot8"]
+resource_name = "Crawl_R"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ou5lc"]
+_data = {
+"Crawl_L": SubResource("Animation_r3e4i"),
+"Crawl_R": SubResource("Animation_2oot8"),
+"RESET": SubResource("Animation_bed00")
+}
 
 [node name="Enemy1" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
@@ -48,11 +101,22 @@ shape = SubResource("RectangleShape2D_n8f4x")
 [node name="hat_point" type="Marker2D" parent="."]
 position = Vector2(0, -40)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CrawlingSprite" type="Sprite2D" parent="."]
 position = Vector2(1, -12)
 scale = Vector2(1.91447, 1.91447)
 texture = ExtResource("3_aulqk")
-region_enabled = true
+hframes = 2
+vframes = 2
+frame = 2
 region_rect = Rect2(3, 80, 57, 36)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CrawlingSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_ou5lc")
+}
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+visible = false
+rotation = 0.00131056
 
 [connection signal="body_entered" from="DamageEmit" to="DamageEmit" method="_on_body_entered"]

@@ -35,6 +35,7 @@ func _process(delta):
 			if fly_away_timer >= fly_away_duration:
 				state = State.MOVE_TO_PLAYER
 				fly_away_timer = 0
+#I know its messy but its the way that made most sense to me - cookies
 	var direction = (player.position - position).normalized()
 	if direction.x < 0:
 			$Marker2D.scale.x = -1
@@ -44,13 +45,7 @@ func _process(delta):
 			$Marker2D.scale.x = 1
 			$FlyingSprite/AnimationPlayer.play("Fly_R")
 			rotation = 45
-			
-#	if $Marker2D.scale.x == 1:
-#		$FlyingSprite/AnimationPlayer.play("Fly_L")
-#		rotation = -45
-#	else:
-#		$FlyingSprite/AnimationPlayer.play("Fly_R")
-#		rotation = 45
+
 
 func take_enemy_damage(bullet_damage):
 	current_health -= bullet_damage
