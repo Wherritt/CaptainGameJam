@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6kap0ecqc4ya"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_iykqt"]
+[ext_resource type="Texture2D" uid="uid://bah6j6l5r4x86" path="res://Assets/ResizedBackground.png" id="2_2cjag"]
+[ext_resource type="Theme" uid="uid://cjjbxe3mc4y4l" path="res://Assets/CowboyMoviesTheme.tres" id="4_1q8ab"]
+[ext_resource type="Texture2D" uid="uid://rk4rrtbjxsjr" path="res://Assets/You Died.png" id="4_gexyk"]
+
+[node name="Death Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iykqt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_2cjag")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 446.185)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -229.0
+offset_top = -407.0
+offset_right = 230.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Replay" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+theme = ExtResource("4_1q8ab")
+text = "REPLAY
+"
+
+[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+theme = ExtResource("4_1q8ab")
+text = "MAIN MENU"
+
+[node name="YouDied" type="Sprite2D" parent="."]
+position = Vector2(1372, 336)
+scale = Vector2(0.635371, 0.674074)
+texture = ExtResource("4_gexyk")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Replay" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_quit_pressed"]

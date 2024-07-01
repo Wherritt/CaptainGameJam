@@ -11,10 +11,6 @@ var can_shoot = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var shoot_timer = $shoot_timer
 
-func _ready():
-	$Sprite2D/AnimationPlayer.play("Idle Right")
-	var FaceDirection = Input.get_axis("Left","Right")
-
 func _physics_process(delta):
 	#HAT POWER UP
 	if not has_hat() == "":
@@ -99,8 +95,9 @@ func take_damage(damage):
 		die()
 
 func die():
+	get_tree().change_scene_to_file("res://Death.tscn")
 	print("You died")
-	call_deferred("reload_scene")
+	#call_deferred("reload_scene")
 
 func has_hat() -> String:
 	var hat_point = $hat_point
