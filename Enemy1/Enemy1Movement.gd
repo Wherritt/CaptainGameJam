@@ -11,13 +11,12 @@ var enemy_one_current_health = enemy_one_max_health
 @onready var hat_1_node = preload("res://scripts/hat_1.tscn")
 @onready var bullet_hat = preload("res://scripts/bullet_hat.tscn")
 @onready var health_hat = preload("res://scripts/health_hat.tscn")
-var hat_instance = null
+
 var center_point = null
+var hat_instance = null
 var hats = []
 
 func _ready():
-	center_point = get_node("/root/Main/marker_point")
-
 	hats = [
 		hat_1_node,
 		bullet_hat,
@@ -32,6 +31,8 @@ func _ready():
 
 #check if enemy spawned on the left or the right side of the base platform
 func check_spawn_position():
+	center_point = get_tree().root.get_node("marker_point")
+	print (center_point)
 	if position.x < center_point.global_position.x:
 		direction = 1
 	else:

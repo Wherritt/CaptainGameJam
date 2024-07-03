@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6pns84vt2ch8"]
+
+[ext_resource type="Shader" path="res://Assets/Blur.gdshader" id="1_4tgv2"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_bn6fy"]
+[ext_resource type="Theme" uid="uid://cjjbxe3mc4y4l" path="res://Assets/CowboyMoviesTheme.tres" id="2_glt3b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uir8x"]
+shader = ExtResource("1_4tgv2")
+shader_parameter/amount = 3.871
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bn6fy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_uir8x")
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 284.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+theme = ExtResource("2_glt3b")
+text = "RESUME"
+
+[node name="Quit To Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+theme = ExtResource("2_glt3b")
+text = "QUIT"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit To Main Menu" to="." method="_on_quit_to_main_menu_pressed"]

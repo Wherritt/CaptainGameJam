@@ -26,8 +26,8 @@ tracks/0/keys = {
 "values": [Vector2i(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_bed00"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_2oot8"]
+resource_name = "Crawl_R"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,8 +41,8 @@ tracks/0/keys = {
 "values": [Vector2i(0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_2oot8"]
-resource_name = "Crawl_R"
+[sub_resource type="Animation" id="Animation_bed00"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

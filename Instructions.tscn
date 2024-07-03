@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://ymqrbwpya8pm"]
+
+[ext_resource type="Script" path="res://Instructions.gd" id="1_3e3f7"]
+[ext_resource type="Texture2D" uid="uid://bah6j6l5r4x86" path="res://Assets/ResizedBackground.png" id="2_u5ty6"]
+[ext_resource type="Theme" uid="uid://cjjbxe3mc4y4l" path="res://Assets/CowboyMoviesTheme.tres" id="4_gfacf"]
+
+[node name="Instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3e3f7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_u5ty6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -226.0
+offset_top = -279.0
+offset_right = 226.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+theme = ExtResource("4_gfacf")
+text = "CONTINUE"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_gfacf")
+text = "KILL THE ENEMIES
+DEPOSIT THE REQUIRED HAT TO MOVE ON TO NEXT STAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]

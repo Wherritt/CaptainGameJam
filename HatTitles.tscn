@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3 uid="uid://d25oano8fm4wi"]
+
+[ext_resource type="Theme" uid="uid://cjjbxe3mc4y4l" path="res://Assets/CowboyMoviesTheme.tres" id="1_y2x6u"]
+[ext_resource type="Texture2D" uid="uid://b8jfdm0qw4xg6" path="res://Assets/HatSheet.png" id="2_ge1au"]
+
+[node name="Hat_1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hat_1" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.0
+offset_top = -35.0
+offset_right = 142.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y2x6u")
+text = "MOVEMENT HAT"
+
+[node name="Movement" type="Sprite2D" parent="hat_1"]
+position = Vector2(172.5, -65.415)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ge1au")
+region_enabled = true
+region_rect = Rect2(65, 87, 63, 34)
+
+[node name="health" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.0
+offset_top = -35.0
+offset_right = 142.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y2x6u")
+text = "HEALTH HAT"
+
+[node name="Health" type="Sprite2D" parent="health"]
+position = Vector2(172.5, -65.415)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ge1au")
+region_enabled = true
+region_rect = Rect2(66, 152, 62, 30)
+
+[node name="bullet" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.0
+offset_top = -35.0
+offset_right = 142.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y2x6u")
+text = "BULLET HAT"
+
+[node name="Bullet" type="Sprite2D" parent="bullet"]
+position = Vector2(172.5, -65.415)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ge1au")
+region_enabled = true
+region_rect = Rect2(70, 8, 55, 47)

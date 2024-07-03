@@ -54,6 +54,8 @@ texture = ExtResource("1_a3cia")
 region_rect = Rect2(2569, 1136, 1278, 528)
 
 [resource]
+default_font = ExtResource("1_h1sid")
+default_font_size = 80
 Button/colors/font_color = Color(0.37, 0.167363, 0.1406, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -77,3 +79,6 @@ Button/styles/focus = SubResource("StyleBoxFlat_y41fx")
 Button/styles/hover = SubResource("StyleBoxTexture_ei4g2")
 Button/styles/normal = SubResource("StyleBoxTexture_en3d0")
 Button/styles/pressed = SubResource("StyleBoxTexture_6a2q0")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)

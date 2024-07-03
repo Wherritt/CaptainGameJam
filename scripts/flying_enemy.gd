@@ -5,7 +5,7 @@ enum State {
 	MOVE_AWAY
 }
 
-var player = null
+@onready var player = get_node("/root/Main/Player") 
 var speed
 var state = State.MOVE_TO_PLAYER
 const MAX_HEALTH = 2
@@ -20,7 +20,7 @@ var HIT_PATH = [
 ]
 
 func _ready():
-	player = get_tree().root.get_node("Main/Player")
+	#player = get_node("/root/Main/Player") 
 	speed = FlyerSpeed.flyer_speed
 
 func _process(delta):
@@ -36,7 +36,7 @@ func _process(delta):
 				state = State.MOVE_TO_PLAYER
 				fly_away_timer = 0
 #I know its messy but its the way that made most sense to me - cookies
-	var direction2 = (player.position - position).normalized()
+	var direction2 = (player.position - self.position).normalized()
 	if direction2.x < 0:
 			$Marker2D.scale.x = -1
 			$FlyingSprite/AnimationPlayer.play("Fly_L")

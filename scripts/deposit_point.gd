@@ -7,22 +7,30 @@ signal speed_up_flyers
 @onready var bullet_hat = preload("res://scripts/bullet_hat.tscn")
 @onready var health_hat = preload("res://scripts/health_hat.tscn")
 
+@onready var hat_1Sprite =  $"../Hat_1"
+@onready var healthSprite = $"../HealthHat"
+@onready var BulletSprite =  $"../BulletHat"
+
+
 var hat_instance = null
+var UI_instance = null
 var hats = []
 
 func _ready():
 	hats = [
-		{"name": "hat_1", "scene": hat_1},
-		{"name": "bullet_hat", "scene": bullet_hat},
-		{"name": "health_hat", "scene": health_hat}
+		{"name": "hat_1", "scene": hat_1, "sprite" : hat_1Sprite},
+		{"name": "bullet_hat", "scene": bullet_hat, "sprite" : BulletSprite},
+		{"name": "health_hat", "scene": health_hat, "sprite" : healthSprite}
 	]
 	choose_hat_for_this_stage()
 	
 func choose_hat_for_this_stage():
 	var hat_choice = randi() % hats.size()
 	hat_instance = hats[hat_choice]["name"]
+	UI_instance = hats[hat_choice]["sprite"]
 	print(hat_instance)
-
+	UI_instance.visible = true
+	
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		var player = body
@@ -40,6 +48,8 @@ func players_hat_type(hat_type) -> String:
 	return ""
 
 func next_stage():
+	UI_instance.visible = false
+	Main.score += 1
 	emit_signal("next_enemy_spawn_timer")
 	emit_signal("speed_up_flyers")
 	var enemies = get_tree().get_nodes_in_group("Enemy")
